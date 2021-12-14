@@ -1,17 +1,18 @@
 from flask import Flask
 import requests
 import json
+import os
 
 app = Flask(__name__)
 @app.route('/webhook', methods = ['POST'])
 def webhook():
   url = "https://webexapis.com/v1/messages"
   data = json.dumps({
-        "Id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS84NDQ0YTY2MC1kZWUxLTQ1NzMtYTYwZi02NjhhYjlhYjUwMWU",
-        "text": "¡Recibimos un webhook!"
+    "roomId": "Y2lzY29zcGFyazovL3VzL1JPT00vYmFkYjcyZTAtNTg5OC0xMWVjLThkMjYtYTk1ZWQ3ZDZhYTJl",
+    "text": "¡Recibimos un webhook!"
   })
   headers = {
-    "Authorization": "Bearer NGJmNDQ2ZmMtZWYzYi00MjU2LTg2NGQtZTMwZDk5YjFlZTc5MWVmYTIzZjgtYmM0_PF84_2a001399-4e85-4adc-b568-32f8032f2ae7",
+    "Authorization": "Bearer " + os.environ["WEBEX_TEAMS_ACCESS_TOKEN"],
     "Content-Type": "application/json"
   }
   response = requests.post(url, headers=headers, data=data)

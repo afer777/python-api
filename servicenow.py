@@ -1,11 +1,12 @@
 import requests
 import json
 import base64
+import os
 
 url = "https://dev111297.service-now.com/api/now/table/incident"
-username = "admin"
-password = "z7QeGICxsl4Z"
-room_id = "Y2lzY29zcGFyazovL3VzL1JPT00vYzg2ZjljMDAtNTY5Yi0xMWVjLThjNmUtYjE2MmM5MjUxYmVl"
+username = os.environ["SERVICENOW_USERNAME"]
+password = os.environ["SERVICENOW_PASSWORD"]
+room_id = "Y2lzY29zcGFyazovL3VzL1JPT00vYmFkYjcyZTAtNTg5OC0xMWVjLThkMjYtYTk1ZWQ3ZDZhYTJl"
 
 payload = {
     "description": "Al intentar llamar a una extensión recibo tono de ocupado.",
